@@ -185,9 +185,19 @@ The ORDER BY clause in MySQL can be used without the ASC or DESC modifiers. The 
 
 The SQL DISTINCT keyword is combined with the SELECT query to remove all duplicate records and return only unique records. There may be times when a table has several duplicate records.
 The DISTINCT clause in SQL is used to eliminate duplicates from a SELECT statement’s result set.
+```sql
+-- select the unique ages from the Customers table
+SELECT DISTINCT age
+FROM Customers;
+```
+![sql-select-distinct.png](src%2Fsql-select-distinct.png)
 
-
-
+```sql
+-- select rows if the first name and country of a customer is unique
+SELECT DISTINCT country, first_name
+FROM Customers;
+```
+![sql-select-distinct-2.png](src%2Fsql-select-distinct-2.png)
 
 
 
