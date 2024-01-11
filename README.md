@@ -13,6 +13,9 @@
 * - Data Definition Language (DDL) – It allows you to perform various operations on the database such as CREATE, ALTER, and DELETE objects.
 * - Data Manipulation Language(DML) – It allows you to access and manipulate data. It helps you to insert, update, delete and retrieve data from the database.
 * - Data Control Language(DCL) – It allows you to control access to the database. Example – Grant, Revoke access permissions.
+![7uUaJ.png](src%2F7uUaJ.png)
+
+
 <hr/>
 
 * Q. What is the SELECT statement?
@@ -24,6 +27,12 @@
 
 * - WHERE clause: In SQL, the WHERE clause is used to filter records that are required depending on certain criteria.
 * - ORDER BY clause: The ORDER BY clause in SQL is used to sort data in ascending (ASC) or descending (DESC) order depending on specified field(s) (DESC).
+```sql
+-- orders all rows from Customers in ascending order by country
+SELECT *
+FROM Customers
+ORDER BY country;
+```
 * - GROUP BY clause: GROUP BY clause in SQL is used to group entries with identical data and may be used with aggregation methods to obtain summarised database results.
 * - HAVING clause in SQL is used to filter records in combination with the GROUP BY clause. It is different from WHERE, since the WHERE clause cannot filter aggregated records.
 <hr/>
