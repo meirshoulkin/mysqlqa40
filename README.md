@@ -1,3 +1,57 @@
+* SQL Interview Questions
+![SQL-Query-Interview-Question.jpg](src%2FSQL-Query-Interview-Question.jpg)
+
+* Q. What is the difference between SQL and MySQL?
+* - SQL is a standard language which stands for Structured Query Language based on the English language
+* - SQL is the core of the relational database which is used for accessing and managing database
+
+* - MySQL is a database management system.
+* - MySQL is an RDMS (Relational Database Management System) such as SQL Server, Informix etc.
+<hr/>
+
+* Q. What are the different subsets of SQL?
+* - Data Definition Language (DDL) – It allows you to perform various operations on the database such as CREATE, ALTER, and DELETE objects.
+* - Data Manipulation Language(DML) – It allows you to access and manipulate data. It helps you to insert, update, delete and retrieve data from the database.
+* - Data Control Language(DCL) – It allows you to control access to the database. Example – Grant, Revoke access permissions.
+<hr/>
+
+* Q. What is the SELECT statement?
+* - A SELECT command gets zero or more rows from one or more database tables or views. The most frequent data manipulation language (DML) command is SELECT in most applications. SELECT queries define a result set, but not how to calculate it, because SQL is a declarative programming language.
+<hr/>
+
+* Q. What are some common clauses used with SELECT query in SQL?
+- The following are some frequent SQL clauses used in conjunction with a SELECT query:
+
+* - WHERE clause: In SQL, the WHERE clause is used to filter records that are required depending on certain criteria.
+* - ORDER BY clause: The ORDER BY clause in SQL is used to sort data in ascending (ASC) or descending (DESC) order depending on specified field(s) (DESC).
+* - GROUP BY clause: GROUP BY clause in SQL is used to group entries with identical data and may be used with aggregation methods to obtain summarised database results.
+* - HAVING clause in SQL is used to filter records in combination with the GROUP BY clause. It is different from WHERE, since the WHERE clause cannot filter aggregated records.
+<hr/>
+
+* Q. What is PostgreSQL?
+* - In 1986, a team lead by Computer Science Professor Michael Stonebraker created PostgreSQL under the name Postgres. It was created to aid developers in the development of enterprise-level applications by ensuring data integrity and fault tolerance in systems. PostgreSQL is an enterprise-level, versatile, resilient, open-source, object-relational database management system that supports variable workloads and concurrent users. The international developer community has constantly backed it. PostgreSQL has achieved significant appeal among developers because to its fault-tolerant characteristics.
+It’s a very reliable database management system, with more than two decades of community work to thank for its high levels of resiliency, integrity, and accuracy. Many online, mobile, geospatial, and analytics applications utilise PostgreSQL as their primary data storage or data warehouse.
+<hr/>
+
+* Q. What are SQL comments?
+* - SQL Comments are used to clarify portions of SQL statements and to prevent SQL statements from being executed. Comments are quite important in many programming languages. The comments are not supported by a Microsoft Access database. As a result, the Microsoft Access database is used in the examples in Mozilla Firefox and Microsoft Edge.
+* - Single Line Comments: It starts with two consecutive hyphens (–).
+* - Multi-line Comments: It starts with /* and ends with */.
+<hr/>
+
+* Q. What are Tables and Fields?
+
+* - A table is a collection of data components organized in rows and columns in a relational database. A table can also be thought of as a useful representation of relationships. 
+The most basic form of data storage is the table. An example is shown below.
+
+![anatomy-of-a-sql-table-F-624x214.png](src%2Fanatomy-of-a-sql-table-F-624x214.png)
+
+* - A Record or Row is a single entry in a table. In a table, a record represents a collection of connected data. The Employee table, for example, has four records.
+* - A table is made up of numerous records (rows), each of which can be split down into smaller units called Fields(columns). ID, Name, Department, and Salary are the four fields in the Employee table above.
+
+
+
+
 SQL  — декларативный язык программирования, применяемый для создания, модификации и управления данными в реляционной базе данных, управляемой соответствующей системой управления базами данных.
 
 SQL является, прежде всего, информационно-логическим языком, предназначенным для описания, изменения и извлечения данных, хранимых в реляционных базах данных. 
@@ -246,3 +300,5 @@ Scant3r – это «легкий сканер», основанный на Pyth
 ❯ PostgreSQL http://simplilearn.com/free-postgresql-course-skillup
 
 ❯ SQL Projects http://mygreatlearning.com/academy/learn-for-free/courses/sql-projects-for-beginners
+
+
