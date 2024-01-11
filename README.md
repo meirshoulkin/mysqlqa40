@@ -288,8 +288,31 @@ SQL provides seven (7) aggregate functions, which are given below:
 
 * - AVG(): returns the average value from specified columns.
 * - COUNT(): returns the number of table rows, including rows with null values.
+```sql
+-- returns the number of values in the Orders table
+SELECT COUNT(*)
+FROM Orders;
+```
+![sql-count.png](src%2Fsql-count.png)
+
+```sql
+-- count of customers who live in the UK
+SELECT COUNT(country) AS customers_in_UK
+FROM Customers
+WHERE country = 'UK';
+```
+![sql-count-where.png](src%2Fsql-count-where.png)
 * - MAX(): returns the largest value among the group.
+```sql
+SELECT MAX(column)
+FROM table;
+```
+![sql-max.png](src%2Fsql-max.png)
 * - MIN(): returns the smallest value among the group.
+```sql
+SELECT MIN(column)
+FROM table;
+```
 * - SUM(): returns the total summed values(non-null) of the specified column.
 * - FIRST(): returns the first value of an expression.
 * - LAST(): returns the last value of an expression.
