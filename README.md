@@ -23,7 +23,7 @@ USE my_another_db;
 <hr/>
 
 
-* Q. How to create new able in db
+* Q. How to create new table in db
 ```sql
 -- create a table Companies with name, id, address, email, and phone number
 CREATE TABLE Companies (
@@ -43,6 +43,15 @@ CREATE TABLE IF NOT EXISTS Companies (
   address text,
   email varchar(50),
   phone varchar(10)
+);
+```
+```sql
+-- create Colleges table with primary key college_id
+CREATE TABLE Colleges (
+  college_id INT,
+  college_code VARCHAR(20) NOT NULL,
+  college_name VARCHAR(50),
+  CONSTRAINT CollegePK PRIMARY KEY (college_id)
 );
 ```
 <hr/>
