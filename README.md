@@ -45,9 +45,67 @@ It’s a very reliable database management system, with more than two decades of
 The most basic form of data storage is the table. An example is shown below.
 
 ![anatomy-of-a-sql-table-F-624x214.png](src%2Fanatomy-of-a-sql-table-F-624x214.png)
-
 * - A Record or Row is a single entry in a table. In a table, a record represents a collection of connected data. The Employee table, for example, has four records.
 * - A table is made up of numerous records (rows), each of which can be split down into smaller units called Fields(columns). ID, Name, Department, and Salary are the four fields in the Employee table above.
+<hr/>
+
+* Q. What is Database Black Box Testing?
+* - Black Box Testing is a software testing approach that involves testing the functions of software applications without knowing the internal code structure, implementation details, or internal routes. Black Box Testing is a type of software testing that focuses on the input and output of software applications and is totally driven by software requirements and specifications. Behavioral testing is another name for it.
+<hr/>
+
+Q. What is an Index?
+* - An index refers to a performance tuning method of allowing faster retrieval of records from the table. An index creates an entry for each value and hence it will be faster to retrieve data.
+<hr/>
+
+* Q. What is Normalization and what are the advantages of it?
+
+Normalization in SQL is the process of organizing data to avoid duplication and redundancy. Some of the advantages are:
+* - Better Database organization
+* - More Tables with smaller rows
+* - Efficient data access
+* - Greater Flexibility for Queries
+* - Quickly find the information
+* - Easier to implement Security
+* - Allows easy modification
+* - Reduction of redundant and duplicate data
+* - More Compact Database
+* - Ensure Consistent data after modification
+<hr/>
+
+* Q. What is the difference between DROP and TRUNCATE commands?
+
+DROP command removes a table and it cannot be rolled back from the database whereas TRUNCATE command removes all the rows from the table.
+<hr/>
+
+
+* Q. How many Aggregate functions are available in SQL?
+
+SQL aggregate functions provide information about a database’s data. AVG, for example, returns the average of a database column’s values.
+
+SQL provides seven (7) aggregate functions, which are given below:
+
+* - AVG(): returns the average value from specified columns.
+* - COUNT(): returns the number of table rows, including rows with null values.
+* - MAX(): returns the largest value among the group.
+* - MIN(): returns the smallest value among the group.
+* - SUM(): returns the total summed values(non-null) of the specified column.
+* - FIRST(): returns the first value of an expression.
+* - LAST(): returns the last value of an expression.
+<hr/>
+
+* Q. What is the default ordering of data using the ORDER BY clause? How could it be changed?
+
+The ORDER BY clause in MySQL can be used without the ASC or DESC modifiers. The sort order is preset to ASC or ascending order when this attribute is absent from the ORDER BY clause.
+<hr/>
+
+* Q. How do we use the DISTINCT statement? What is its use?
+
+The SQL DISTINCT keyword is combined with the SELECT query to remove all duplicate records and return only unique records. There may be times when a table has several duplicate records.
+The DISTINCT clause in SQL is used to eliminate duplicates from a SELECT statement’s result set.
+
+
+
+
 
 
 
