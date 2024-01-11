@@ -26,7 +26,15 @@
 - The following are some frequent SQL clauses used in conjunction with a SELECT query:
 
 * - WHERE clause: In SQL, the WHERE clause is used to filter records that are required depending on certain criteria.
-* - ORDER BY clause: The ORDER BY clause in SQL is used to sort data in ascending (ASC) or descending (DESC) order depending on specified field(s) (DESC).
+```sql
+-- select all columns from the customers table with last_name 'Doe' 
+SELECT *
+FROM Customers
+WHERE last_name = 'Doe';
+```
+![sql-where-example.png](src%2Fsql-where-example.png)
+- 
+- ORDER BY clause: The ORDER BY clause in SQL is used to sort data in ascending (ASC) or descending (DESC) order depending on specified field(s) (DESC).
 ```sql
 -- orders all rows from Customers in ascending order by country
 SELECT *
@@ -85,6 +93,22 @@ GROUP BY country, state;
 ![sql-group-by-example.png](src%2Fsql-group-by-example.png)
 
 * - HAVING clause in SQL is used to filter records in combination with the GROUP BY clause. It is different from WHERE, since the WHERE clause cannot filter aggregated records.
+```sql
+-- select customers with the same first name based on their age count 
+SELECT COUNT(age) AS Count, first_name
+FROM Customers
+GROUP BY first_name
+HAVING COUNT(age) > 1;
+```
+
+```sql
+-- select the count of customer ids greater than one and their corresponding country 
+SELECT COUNT(customer_id), country
+FROM Customers
+GROUP BY country
+HAVING COUNT(customer_id) > 1;
+```
+![sql-having.png](src%2Fsql-having.png)
 <hr/>
 
 * Q. What is PostgreSQL?
