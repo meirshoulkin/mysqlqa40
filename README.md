@@ -33,7 +33,57 @@ SELECT *
 FROM Customers
 ORDER BY country;
 ```
+
+```sql
+-- orders all rows from Customers in ascending order by age 
+SELECT *
+FROM Customers
+ORDER BY age ASC;
+```
+
+```sql
+-- sort all rows from Customers, first by first_name and then by age
+SELECT *
+FROM Customers
+ORDER BY first_name, age;
+```
+
+```sql
+-- select last_name and age of customers who don't live in the UK
+-- and sort them by last_name in descending order
+
+SELECT last_name, age
+FROM Customers
+WHERE NOT country = 'UK'
+ORDER BY last_name DESC;
+```
 * - GROUP BY clause: GROUP BY clause in SQL is used to group entries with identical data and may be used with aggregation methods to obtain summarised database results.
+```sql
+-- select the item column and the count of order ids from the Orders table
+-- group them by the item column
+
+SELECT COUNT(order_id), item
+FROM Orders
+GROUP BY item;
+```
+
+```sql
+-- count the number of each country and group the rows by country
+SELECT country, COUNT(*) AS number
+FROM Customers
+GROUP BY country;
+```
+
+```sql
+-- select country, state, and minimum age from Persons table
+-- group by country and state
+
+SELECT country, state, MIN(age) AS min_age
+FROM Persons
+GROUP BY country, state;
+```
+![sql-group-by-example.png](src%2Fsql-group-by-example.png)
+
 * - HAVING clause in SQL is used to filter records in combination with the GROUP BY clause. It is different from WHERE, since the WHERE clause cannot filter aggregated records.
 <hr/>
 
