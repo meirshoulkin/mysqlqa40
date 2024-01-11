@@ -1,6 +1,116 @@
 * SQL Interview Questions
 ![SQL-Query-Interview-Question.jpg](src%2FSQL-Query-Interview-Question.jpg)
 
+* Q. How to create new DB
+```sql
+CREATE DATABASE my_db;
+```
+```sql
+CREATE DATABASE IF NOT EXISTS my_db;
+```
+<hr/>
+
+* Q. How to check for existing databases
+```sql
+SHOW DATABASES;
+```
+<hr/>
+
+* Q. How to switch to another db
+```sql
+USE my_another_db;
+```
+<hr/>
+
+
+* Q. How to create new able in db
+```sql
+-- create a table Companies with name, id, address, email, and phone number
+CREATE TABLE Companies (
+  id int,
+  name varchar(50),
+  address text,
+  email varchar(50),
+  phone varchar(10)
+);
+```
+
+```sql
+-- create a Companies table if it does not exist
+CREATE TABLE IF NOT EXISTS Companies (
+  id int,
+  name varchar(50),
+  address text,
+  email varchar(50),
+  phone varchar(10)
+);
+```
+<hr/>
+
+* Q. How to DROP database
+```sql
+DROP DATABASE my_db;
+```
+<hr/>
+
+* Q. How to DROP table
+```sql
+DROP TABLE my_table;
+```
+```sql
+-- delete Orders table if it exists
+DROP TABLE IF EXISTS Orders;
+```
+<hr/>
+
+
+* Q. How to ALTER table
+
+In SQL, the ALTER TABLE command is used to modify the structure of an existing table like adding, deleting, renaming columns, etc.
+```sql
+-- add phone column to Customers table
+ALTER TABLE Customers
+ADD phone varchar(10);
+```
+* - ALTER TABLE Operations
+
+We can perform the following operations on a table using the ALTER TABLE command:
+
+ - Add a column
+ - Rename a column
+ - Modify a column
+ - Delete a column
+ - Rename a table
+
+```sql
+-- add phone and age columns to Customers table
+ALTER TABLE Customers
+ADD phone varchar(10), age int;
+```
+
+```sql
+-- rename column customer_id to c_id
+ALTER TABLE Customers
+RENAME COLUMN customer_id TO c_id;
+```
+
+```sql
+ALTER TABLE Customers
+MODIFY COLUMN age VARCHAR(2);
+```
+
+```sql
+-- delete country column from Customers table
+ALTER TABLE Customers
+DROP COLUMN country;
+```
+
+```sql
+-- rename Customers table to New_customers
+ALTER TABLE Customers
+RENAME TO New_customers;
+```
+
 * Q. What is the difference between SQL and MySQL?
 * - SQL is a standard language which stands for Structured Query Language based on the English language
 * - SQL is the core of the relational database which is used for accessing and managing database
@@ -201,8 +311,9 @@ FROM Customers;
 
 
 
-
-
+<hr>
+<hr>
+<hr>
 SQL  — декларативный язык программирования, применяемый для создания, модификации и управления данными в реляционной базе данных, управляемой соответствующей системой управления базами данных.
 
 SQL является, прежде всего, информационно-логическим языком, предназначенным для описания, изменения и извлечения данных, хранимых в реляционных базах данных. 
