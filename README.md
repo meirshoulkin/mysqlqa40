@@ -1,7 +1,7 @@
 # Lecture 27 Databases 
 ## Example from mysql J documentation
 
-
+[Connector/J Examples](https://dev.mysql.com/doc/connectors/en/connector-j-examples.html)
 ```java
 import java.sql.Connection;
 import java.sql.DriverManager;
