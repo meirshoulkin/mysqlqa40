@@ -146,6 +146,11 @@ WHERE order_date >= '2024-01-14';
 
 ```
 
+## ERD - Entity Relationship Diagram
+
+![NW5ym.png](src%2FNW5ym.png)
+
+
 #### executeUpdate method:
 
 _Purpose: Used for executing SQL statements that modify the database, such as INSERT, UPDATE, or DELETE statements. It is also used for executing SQL statements that do not return a result set.
