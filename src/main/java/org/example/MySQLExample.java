@@ -119,11 +119,7 @@ public class MySQLExample {
         }
     }
 
-//    private static void useDB(Connection connection) throws SQLException {
-//        Statement statement = connection.createStatement();
-//        boolean x = statement.execute("USE telran40");
-//        System.out.println(x);
-//    }
+
 }
 
 

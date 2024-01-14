@@ -1,4 +1,263 @@
-* SQL Interview Questions
+# Lecture 27 Databases 
+## Example from mysql J documentation
+
+
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+// assume that conn is an already created JDBC connection (see previous examples)
+Statement stmt = null;
+ResultSet rs = null;
+try {
+    stmt = conn.createStatement();
+    rs = stmt.executeQuery("SELECT foo FROM bar");
+    // or alternatively, if you don't know ahead of time that
+    // the query will be a SELECT...
+    if (stmt.execute("SELECT foo FROM bar")) {
+        rs = stmt.getResultSet();
+    }
+    // Now do something with the ResultSet ....
+}
+catch (SQLException ex){
+    // handle any errors
+    System.out.println("SQLException: " + ex.getMessage());
+    System.out.println("SQLState: " + ex.getSQLState());
+    System.out.println("VendorError: " + ex.getErrorCode());
+}
+finally {
+    // it is a good idea to release
+    // resources in a finally{} block
+    // in reverse-order of their creation
+    // if they are no-longer needed
+    if (rs != null) {
+        try {
+            rs.close();
+        } catch (SQLException sqlEx) { } // ignore
+        rs = null;
+    }
+    if (stmt != null) {
+        try {
+            stmt.close();
+        } catch (SQLException sqlEx) { } // ignore
+        stmt = null;
+    }
+}
+```
+
+## SQL example
+
+
+```sql
+-- Create Database
+CREATE DATABASE IF NOT EXISTS telran40;
+USE telran40;
+
+-- Create Personal Table
+CREATE TABLE IF NOT EXISTS personal (
+    person_id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    address VARCHAR(100)
+);
+
+-- Create Customer Table
+CREATE TABLE IF NOT EXISTS customer (
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
+    person_id INT,
+    email VARCHAR(100),
+    phone_number VARCHAR(20),
+    FOREIGN KEY (person_id) REFERENCES personal(person_id)
+);
+
+-- Create Order Table
+CREATE TABLE IF NOT EXISTS order_table (
+    order_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT,
+    order_date DATE,
+    total_amount DECIMAL(10, 2),
+    FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+);
+
+-- Create Product Table
+CREATE TABLE IF NOT EXISTS product (
+    product_id INT PRIMARY KEY AUTO_INCREMENT,
+    product_name VARCHAR(50),
+    price DECIMAL(8, 2)
+);
+
+-- Create Order_Item Table
+CREATE TABLE IF NOT EXISTS order_item (
+    order_item_id INT PRIMARY KEY AUTO_INCREMENT,
+    order_id INT,
+    product_id INT,
+    quantity INT,
+    subtotal DECIMAL(10, 2),
+    FOREIGN KEY (order_id) REFERENCES order_table(order_id),
+    FOREIGN KEY (product_id) REFERENCES product(product_id)
+);
+
+-- Insert Sample Data
+INSERT INTO personal (first_name, last_name, birth_date, address)
+VALUES ('John', 'Doe', '1990-01-01', '123 Main St'),
+       ('Jane', 'Smith', '1985-05-15', '456 Oak St');
+
+INSERT INTO customer (person_id, email, phone_number)
+VALUES (1, 'john.doe@example.com', '555-1234'),
+       (2, 'jane.smith@example.com', '555-5678');
+
+INSERT INTO product (product_name, price)
+VALUES ('Laptop', 999.99),
+       ('Smartphone', 499.99);
+
+INSERT INTO order_table (customer_id, order_date, total_amount)
+VALUES (1, '2024-01-14', 1499.98),
+       (2, '2024-01-15', 999.99);
+
+INSERT INTO order_item (order_id, product_id, quantity, subtotal)
+VALUES (1, 1, 2, 1999.98),
+       (2, 2, 1, 499.99);
+
+-- Create Views
+CREATE VIEW customer_order_view AS
+SELECT
+    c.customer_id,
+    CONCAT(p.first_name, ' ', p.last_name) AS customer_name,
+    o.order_id,
+    o.order_date,
+    o.total_amount
+FROM
+    customer c
+JOIN order_table o ON c.customer_id = o.customer_id
+JOIN personal p ON c.person_id = p.person_id;
+
+-- Create Indexes
+CREATE INDEX idx_customer_email ON customer(email);
+CREATE INDEX idx_product_name ON product(product_name);
+CREATE INDEX idx_order_date ON order_table(order_date);
+
+-- Example Join Query
+SELECT *
+FROM customer_order_view
+WHERE order_date >= '2024-01-14';
+
+```
+
+#### executeUpdate method:
+
+_Purpose: Used for executing SQL statements that modify the database, such as INSERT, UPDATE, or DELETE statements. It is also used for executing SQL statements that do not return a result set.
+Return Type: Returns an integer value representing the number of rows affected by the SQL statement. For INSERT, UPDATE, and DELETE statements, this value indicates the number of rows inserted, updated, or deleted._
+
+##### executeQuery method:
+
+_Purpose: Used for executing SQL queries that retrieve data from the database, typically SELECT statements.
+Return Type: Returns a ResultSet object, which represents the result set of the query. You can use the methods of ResultSet to retrieve and process the data._
+
+
+## Implementation in java 
+```java
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DatabaseExample {
+
+    // JDBC URL, username, and password of MySQL server
+    private static final String JDBC_URL = "jdbc:mysql://your-mysql-host:3306/telran40";
+    private static final String USER = "telran40";
+    private static final String PASSWORD = "telran40";
+
+    public static void main(String[] args) {
+        try {
+            // Load the JDBC driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Establish a connection
+            try (Connection connection = DriverManager.getConnection(JDBC_URL, USER, PASSWORD)) {
+                createTables(connection);
+                insertSampleData(connection);
+                executeQueries(connection);
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createTables(Connection connection) throws SQLException {
+        // Create tables
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS personal (" +
+                    "person_id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "first_name VARCHAR(50)," +
+                    "last_name VARCHAR(50)," +
+                    "birth_date DATE," +
+                    "address VARCHAR(100))");
+
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS customer (" +
+                    "customer_id INT PRIMARY KEY AUTO_INCREMENT," +
+                    "person_id INT," +
+                    "email VARCHAR(100)," +
+                    "phone_number VARCHAR(20)," +
+                    "FOREIGN KEY (person_id) REFERENCES personal(person_id))");
+
+            // Similar statements for other tables
+        }
+    }
+
+    private static void insertSampleData(Connection connection) throws SQLException {
+        // Insert sample data
+        try (Statement statement = connection.createStatement()) {
+            statement.executeUpdate("INSERT INTO personal (first_name, last_name, birth_date, address) " +
+                    "VALUES ('John', 'Doe', '1990-01-01', '123 Main St'), " +
+                    "('Jane', 'Smith', '1985-05-15', '456 Oak St')");
+
+            statement.executeUpdate("INSERT INTO customer (person_id, email, phone_number) " +
+                    "VALUES (1, 'john.doe@example.com', '555-1234'), " +
+                    "(2, 'jane.smith@example.com', '555-5678')");
+
+            // Similar statements for other tables
+        }
+    }
+
+    private static void executeQueries(Connection connection) throws SQLException {
+        // Execute queries
+        try (Statement statement = connection.createStatement()) {
+            // Example query using JOIN
+            ResultSet resultSet = statement.executeQuery("SELECT c.customer_id, CONCAT(p.first_name, ' ', p.last_name) AS customer_name, " +
+                    "o.order_id, o.order_date, o.total_amount " +
+                    "FROM customer c " +
+                    "JOIN order_table o ON c.customer_id = o.customer_id " +
+                    "JOIN personal p ON c.person_id = p.person_id");
+
+            // Process the result set
+            while (resultSet.next()) {
+                // Retrieve data from the result set
+                int customerId = resultSet.getInt("customer_id");
+                String customerName = resultSet.getString("customer_name");
+                int orderId = resultSet.getInt("order_id");
+                String orderDate = resultSet.getString("order_date");
+                double totalAmount = resultSet.getDouble("total_amount");
+
+                // Print or process the retrieved data as needed
+                System.out.println("Customer ID: " + customerId + ", Customer Name: " + customerName +
+                        ", Order ID: " + orderId + ", Order Date: " + orderDate + ", Total Amount: " + totalAmount);
+            }
+        }
+    }
+}
+
+```
+
+# Lecture 26 Databases 
+
+## SQL Interview Questions
+
 ![SQL-Query-Interview-Question.jpg](src%2FSQL-Query-Interview-Question.jpg)
 
 * Q. How to create new DB
